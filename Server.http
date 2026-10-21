@@ -1,0 +1,41 @@
+@host = http://127.0.0.1:5080
+
+### 服务信息
+GET {{host}}/
+
+### 健康检查（桌面端启动时可先探活）
+GET {{host}}/api/health
+
+### 笔记列表（置顶优先，按更新时间倒序）
+GET {{host}}/api/notes?page=1&pageSize=20
+
+### 关键字搜索
+GET {{host}}/api/notes?keyword=测试
+
+### 单条详情
+GET {{host}}/api/notes/1
+
+### 新建笔记
+POST {{host}}/api/notes
+Content-Type: application/json
+
+{
+  "title": "示例标题",
+  "content": "示例内容",
+  "isPinned": false
+}
+
+### 更新笔记（全量覆盖）
+PUT {{host}}/api/notes/1
+Content-Type: application/json
+
+{
+  "title": "改后的标题",
+  "content": "改后的内容",
+  "isPinned": true
+}
+
+### 删除笔记
+DELETE {{host}}/api/notes/1
+
+###
